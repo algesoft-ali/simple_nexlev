@@ -10,6 +10,7 @@ const themeSlice = createSlice({
   reducers: {
     toggleNavbar: (state) => {
       state.navbarOpen = !state.navbarOpen;
+      return state;
     },
   },
 });

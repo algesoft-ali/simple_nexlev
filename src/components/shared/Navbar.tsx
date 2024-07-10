@@ -25,9 +25,7 @@ const navLinks = [
   },
 ];
 const Navbar = () => {
-  const {
-    theme: { navbarOpen },
-  } = useAppSelector((state) => state);
+  const { navbarOpen } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
   return (

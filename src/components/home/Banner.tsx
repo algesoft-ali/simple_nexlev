@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div className="container py-20 min-h-[700px] flex items-center justify-between">
       {/* Left */}
-      <div data-aos="fade-right">
+      <div>
         <h1 className="text-4xl md:text-7xl font-semibold !leading-tight">
           Discover <br className="hidden md:block" />
           <span className="gradient-text">
@@ -22,7 +22,7 @@ const Banner = () => {
           their growth, strategy and revenue.
         </h2>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <PrimaryButton className="w-full">Find Your Niche</PrimaryButton>
           <SecondaryButton className="w-full">
             <Image

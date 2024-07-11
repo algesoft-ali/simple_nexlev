@@ -5,6 +5,7 @@ import PrimaryButton from "../shared/PrimaryButton";
 import Link from "next/link";
 import { useLoginUserMutation } from "@/lib/features/user/userApi";
 import { useRouter } from "next/navigation";
+import GoogleLogin from "./GoogleLogin";
 
 const LoginForm = () => {
   // ----- State
@@ -66,6 +67,15 @@ const LoginForm = () => {
           Register Now
         </Link>
       </p>
+
+      {/* Divider */}
+      <div className="flex justify-center items-center mt-6">
+        <div className="w-[calc(50%-12px)] h-[1px] bg-neutral-300"></div>
+        <p className="text-neutral-500 font-medium mx-4">or</p>
+        <div className="w-[calc(50%-12px)] h-[1px] bg-neutral-300"></div>
+      </div>
+
+      <GoogleLogin />
     </div>
   );
 };

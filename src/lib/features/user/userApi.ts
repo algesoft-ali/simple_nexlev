@@ -14,7 +14,9 @@ const userApi = baseApi.injectEndpoints({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          setCookie("accessToken", data?.data?.accessToken);
+          setCookie("accessToken", data?.data?.accessToken, {
+            expires: new Date(Date.now() + 86400 * 1000),
+          });
           dispatch(setUser(data?.data?.user));
         } catch (error) {
           console.log(error);
@@ -32,7 +34,9 @@ const userApi = baseApi.injectEndpoints({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          setCookie("accessToken", data?.data?.accessToken);
+          setCookie("accessToken", data?.data?.accessToken, {
+            expires: new Date(Date.now() + 86400 * 1000),
+          });
           dispatch(setUser(data?.data?.user));
         } catch (error) {
           console.log(error);

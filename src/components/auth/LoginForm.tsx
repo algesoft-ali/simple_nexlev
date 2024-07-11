@@ -4,10 +4,14 @@ import TextField from "../form/TextField";
 import PrimaryButton from "../shared/PrimaryButton";
 import Link from "next/link";
 import { useLoginUserMutation } from "@/lib/features/user/userApi";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   // ----- State
   const [formData, setFormData] = useState({ email: "", password: "" });
+
+  // ----- Hooks
+  const router = useRouter();
 
   // ----- Mutation
   const [loginApi, { isLoading }] = useLoginUserMutation();
@@ -20,6 +24,7 @@ const LoginForm = () => {
 
   const handleSubmit = async () => {
     await loginApi(formData);
+    router.push("/");
   };
 
   return (

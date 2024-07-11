@@ -4,6 +4,7 @@ import TextField from "../form/TextField";
 import PrimaryButton from "../shared/PrimaryButton";
 import Link from "next/link";
 import { useRegisterUserMutation } from "@/lib/features/user/userApi";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   // ----- State
@@ -15,6 +16,9 @@ const RegisterForm = () => {
     address: "",
   });
 
+  // ----- Hooks
+  const router = useRouter();
+
   // ----- Mutation
   const [registerApi, { isLoading }] = useRegisterUserMutation();
 
@@ -25,7 +29,14 @@ const RegisterForm = () => {
   };
 
   const handleSubmit = async () => {
-    await registerApi(formData);
+    const inputData = {
+      name: `${formData?.firstName} ${formData?.lastName}`,
+      email: formData?.email,
+      password: formData?.password,
+      address: formData?.address,
+    };
+    await registerApi(inputData);
+    router.push("/");
   };
 
   return (

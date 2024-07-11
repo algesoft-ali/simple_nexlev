@@ -1,6 +1,6 @@
 import { baseApi } from "@/lib/baseApi";
-import { setUser } from "./userSlice";
 import { setCookie } from "cookies-next";
+import { setUser } from "./userSlice";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -44,6 +44,19 @@ const userApi = baseApi.injectEndpoints({
     getAllUsers: builder.query({
       query: () => "/user",
     }),
+
+    // ----- get user info
+    getUser: builder.query({
+      query: () => "/user/me",
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser(data?.data));
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
   }),
 });
 
@@ -51,4 +64,5 @@ export const {
   useLoginUserMutation,
   useRegisterUserMutation,
   useGetAllUsersQuery,
+  useGetUserQuery,
 } = userApi;

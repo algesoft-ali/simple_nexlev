@@ -1,6 +1,5 @@
 const config = {
-  // server_url: "https://simple-nexlev-server.vercel.app",
-  server_url: "http://localhost:3001",
+  server_url: "https://simple-nexlev-server.vercel.app",
 };
 
 export default config;

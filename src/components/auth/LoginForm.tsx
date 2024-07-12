@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useLoginUserMutation } from "@/lib/features/user/userApi";
 import { useRouter } from "next/navigation";
 import GoogleLogin from "./GoogleLogin";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   // ----- State
@@ -15,7 +16,7 @@ const LoginForm = () => {
   const router = useRouter();
 
   // ----- Mutation
-  const [loginApi, { isLoading }] = useLoginUserMutation();
+  const [loginApi, { isLoading, error }] = useLoginUserMutation();
 
   // ----- Handlers
   const handleChangeInput = (e: any) => {
@@ -24,7 +25,12 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async () => {
-    await loginApi(formData);
+    const loginResult = await loginApi(formData);
+    if ("error" in loginResult) {
+      // @ts-ignore
+      toast.error(loginResult?.error?.data?.message);
+      return;
+    }
     router.push("/");
   };
 

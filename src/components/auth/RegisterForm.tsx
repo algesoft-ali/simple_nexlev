@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRegisterUserMutation } from "@/lib/features/user/userApi";
 import { useRouter } from "next/navigation";
 import GoogleLogin from "./GoogleLogin";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   // ----- State
@@ -36,7 +37,12 @@ const RegisterForm = () => {
       password: formData?.password,
       address: formData?.address,
     };
-    await registerApi(inputData);
+    const registerResult = await registerApi(inputData);
+    if ("error" in registerResult) {
+      // @ts-ignore
+      toast.error(registerResult?.error?.data?.message);
+      return;
+    }
     router.push("/");
   };
 

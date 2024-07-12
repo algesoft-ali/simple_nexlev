@@ -19,7 +19,7 @@ const userApi = baseApi.injectEndpoints({
           });
           dispatch(setUser(data?.data?.user));
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
     }),
@@ -39,7 +39,7 @@ const userApi = baseApi.injectEndpoints({
           });
           dispatch(setUser(data?.data?.user));
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
     }),
@@ -57,7 +57,7 @@ const userApi = baseApi.injectEndpoints({
           const { data } = await queryFulfilled;
           dispatch(setUser(data?.data));
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
     }),

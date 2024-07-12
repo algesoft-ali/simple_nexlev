@@ -16,7 +16,7 @@ const UsersTable = () => {
   // ----- hooks
   const router = useRouter();
   const { user } = useAppSelector((state) => state.user);
-  const { isLoading: userLoading } = useGetUserQuery(
+  const { isLoading: userLoading, isSuccess: userSuccess } = useGetUserQuery(
     {},
     { skip: getCookie("accessToken") ? false : true }
   );
@@ -26,11 +26,11 @@ const UsersTable = () => {
   );
 
   useEffect(() => {
-    if (!user || user.role !== "admin" || userLoading) {
+    if ((!user || user.role !== "admin") && userSuccess) {
       toast.error("You are not authorized");
       router.push("/");
     }
-  }, [user, router, userLoading]);
+  }, [user, router, userSuccess]);
 
   if (isLoading || userLoading)
     return (
@@ -42,7 +42,9 @@ const UsersTable = () => {
   return (
     <div className="container py-20">
       <div className="flex items-center justify-between gap-6">
-        <h2 className="text-3xl font-semibold">Users: {allUsers?.data?.length || 0}</h2>
+        <h2 className="text-3xl font-semibold">
+          Users: {allUsers?.data?.length || 0}
+        </h2>
 
         <PrimaryButton>Add User</PrimaryButton>
       </div>

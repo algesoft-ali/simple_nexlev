@@ -46,6 +46,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     deleteCookie("accessToken");
     dispatch(setUser(null));
+    window.location.href = "/";
   };
 
   return (

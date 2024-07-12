@@ -26,6 +26,10 @@ const navLinks = [
     label: "Course",
     path: "/",
   },
+  {
+    label: "Users",
+    path: "/users",
+  },
 ];
 const Navbar = () => {
   const { navbarOpen } = useAppSelector((state) => state.theme);
